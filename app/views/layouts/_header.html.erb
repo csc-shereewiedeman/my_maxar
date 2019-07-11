@@ -1,5 +1,36 @@
-<header>
-  <div class="container">
-    Maxar Website
+<section class="navigation">
+  <div class="nav-container">
+  <div class="brand">
+      <%= link_to root_url do %>
+      <%= image_tag('logos/max_logo_190x60_web-05-05.svg', class: 'logo') %>
+    <% end %>
+    </div>
+    <nav roll="navigation">
+    <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+      <ul class="nav-list">
+        <li>
+          <a>Our Company</a>
+          <ul class="nav-dropdown">
+            <li><%= link_to 'About Us', '#' %></li>
+            <li><%= link_to 'Purpose and Values', '#' %></li>
+            <li><%= link_to 'Leadership', '#' %></li>
+            <li><%= link_to 'Maxar Perspective', 'http://betterworld.maxar.com', target: '_blank' %></li>
+            <li><%= link_to 'Maxar Missions', '#' %></li>
+          </ul>
+        </li>
+
+        <li><%= link_to 'Our Capabilities', '#' %></li>
+        <li><%= link_to 'Investors', 'http://investor.maxar.com/overview/default.aspx', target: '_blank' %></li>
+        <li>
+          <a>News & Events</a>
+          <ul class="nav-dropdown">
+            <li><%= link_to 'Media Coverage', '#' %></li>
+            <li><%= link_to 'Events', '#' %></li>
+            <li><a href="http://investor.maxar.com/investor-news/default.aspx" target="_blank">News</a></li>
+          </ul>
+        </li>
+        <li><%= link_to 'Blog', 'http://blog.maxar.com', target: 'blank'%></li>
+      </ul>
+    </nav>
   </div>
-</header>
+</section>

@@ -2,11 +2,62 @@
 @import "bootstrap";
 
 
-/* universal */
+/* Variables */
+
+// Colors
+$color_dark_gray: #333333;
+$color_medium_gray: #666666;
+$color_light_gray: #CCCCCC;
+$color_transparent: rgba(0,0,0,0.3);
+
+$color_black: #000000;
+$color_white: #FFFFFF;
+$color_gray: #a3a3a3;
+$color_red: #FC4425;
+$color_green: #22DC3E;
+$color_blue: #2965FB;
+$color_purple: #D500D5;
+
+
+
+$primary_body_color: $color_black;
+$primary_header_color: $color_dark_gray;
+
+$secondary_body_color: $color_white;
+$secondary_header_color: $color_light_gray;
+
+
+
+
+// Fonts
+$primary_fontfamily: 'Blender',
+Arial,
+'Helvetica Neue',
+Helvetica,
+sans-serif;
+$secondary_fontfamily: 'Blender Book',
+'Arial Narrow',
+Arial,
+sans-serif;
+
+// Navigation Variables
+$content-width: 100%;
+$breakpoint: 1270px;
+$nav-height: 6em;
+$nav-background: $color_black;
+$nav-font-color: $color_white;
+$link-hover-color: $color_green;
+
+
+/* Universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 40px;
+  background-color: black;
+	color: white;
 }
+
+
 
 section {
   overflow: auto;
@@ -18,4 +69,196 @@ section {
 
 .center h1 {
   margin-bottom: 10px;
+}
+
+
+/* Navigation */
+
+// Outer navigation wrapper
+.navigation {
+  height: $nav-height;
+  background: $nav-background;
+  transition: top 0.2s ease-in-out;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+
+  &.nav-up {
+    top: $nav-height * -1;
+  }
+}
+
+// Container with no padding for navbar
+.nav-container {
+  max-width: $content-width;
+  margin: 0 auto;
+}
+
+// Navigation
+nav {
+  float: left;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      float: left;
+      position: relative;
+
+      a,
+      a:visited {
+        display: block;
+        text-transform: uppercase;
+        padding: 0 20px;
+        line-height: $nav-height;
+        background: rgba(0,0,0,.6);
+        color: $nav-font-color;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+          color: $color_green;
+        }
+
+        &:not(:only-child):after {
+          padding-left: 4px;
+          content: ' ▾';
+        }
+      }
+
+      // Dropdown list
+      ul li {
+        min-width: 190px;
+
+        a {
+          padding: 15px;
+          line-height: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+
+// Dropdown list binds to JS toggle event
+.nav-dropdown {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+
+}
+
+
+/* Mobile navigation */
+
+// Binds to JS Toggle
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $nav-background;
+  height: $nav-height;
+  width: $nav-height;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media only screen and (max-width: $breakpoint) {
+
+  // Hamburger nav visible on mobile only
+  .nav-mobile {
+    display: block;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+
+  nav {
+    width: 100%;
+    padding: 0;
+
+    ul {
+      display: none;
+
+      li {
+        float: none;
+
+        a {
+          padding: 15px;
+          line-height: 20px;
+        }
+
+        ul li a {
+          padding-left: 30px;
+        }
+      }
+    }
+  }
+
+  .nav-dropdown {
+    position: static;
+  }
+}
+
+@media screen and (min-width: $breakpoint) {
+  .nav-list {
+    display: block !important;
+  }
+}
+
+#nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 22px;
+  cursor: pointer;
+  padding: 10px 35px 16px 0px;
+
+  span,
+  span:before,
+  span:after {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 5px;
+    width: 35px;
+    background: $nav-font-color;
+    position: absolute;
+    display: block;
+    content: '';
+    transition: all 300ms ease-in-out;
+  }
+
+  span:before {
+    top: -10px;
+  }
+
+  span:after {
+    bottom: -10px;
+  }
+
+  &.active span {
+    background-color: transparent;
+
+    &:before,
+    &:after {
+      top: 0;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
 }

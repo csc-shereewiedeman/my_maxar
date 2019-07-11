@@ -2,5 +2,5 @@ Rails.application.routes.draw do
   
   get 'static_pages/contact'
 
-  root 'application#home'
+  root 'home#index' , slug: 'home'
 end
